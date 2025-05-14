@@ -18,11 +18,17 @@ export default function MawarPage() {
     setTimeout(() => setShowPaper(true), 1000);
   }
 
-  function handleClosePopup() {
-    setShowPopup(false);
-    setShowPaper(false);
-    setStage('idle');
+ function handleClosePopup() {
+  const audio = audioRef.current;
+  if (audio) {
+    audio.pause();           // ⏸ stop musik
+    audio.currentTime = 0;   // ⏮ reset ke awal (kalau kamu mau)
   }
+  setIsPlaying(false);       // update state
+  setShowPopup(false);
+  setShowPaper(false);
+  setStage('idle');          // balik ke tampilan awal
+}
 
   function playMusicTransition() {
     setStage('shrinking');
@@ -162,16 +168,20 @@ export default function MawarPage() {
                 className="absolute top-[-88px] left-[364px] transform -translate-x-1/2 text-white w-[332px] h-[442px] bg-[url('/kertas.png')] bg-cover bg-no-repeat z-20 px-4 pt-4"
                 style={{ animation: 'slideUpPaper 1s ease-out forwards' }}
               >
-                <h2 className="text-lg font-semibold mb-2">Hai mawarawr 🌷</h2>
-                <p className="mb-4">
-                  Makasih ya udah selalu ada, kamu lucu banget dan penting bgt buat aku 🫶
-                </p>
-                <button
-                  className="bg-pink-500 text-white px-4 py-2 rounded mb-2"
-                  onClick={playMusicTransition}
-                >
-                  click yaw
-                </button>
+                 <img
+                  src="/tiks.png" // Ganti dengan path gambar yang kamu buat di Figma
+                  alt="Tulisan dari Figma"
+                  className="w-100 h-80 object-contain" // Sesuaikan ukuran dan perataan gambar jika perlu
+                />
+               <div className="relative">
+  <button
+    className="absolute top-6 left-1/2 transform -translate-x-1/2 bg-[#B99D86] text-white px-4 py-2 rounded-xl mb-2 shadow-md hover:bg-[#A28870] transition-all duration-300"
+    onClick={playMusicTransition}
+  >
+    Click Yaw
+  </button>
+</div>
+
                 <br />
                 <button
                   className="text-sm text-gray-200 hover:underline"
@@ -193,60 +203,74 @@ export default function MawarPage() {
             )}
           </div>
 
-          {stage === 'player' && (
-            <>
-              <img
-                src="/kia.png"
-                alt="Karakter lucu"
-                className="absolute top-[64px] left-1/2 w-16 h-16 z-50 transform -translate-x-1/2 animate-slide-side"
-              />
-              <div className="fixed bottom-88 left-1/2 transform -translate-x-1/2 bg-white/24 backdrop-blur-md rounded-xl shadow-lg flex flex-col items-center gap-4 p-4 z-50 w-[300px]">
-                {/* Atas: Vinyl + judul */}
-                <div className="flex flex-col items-center">
-                  <div className="relative w-16 h-16 mb-2">
-                    <div
-                      className={`w-16 h-16 rounded-full border-2 border-black overflow-hidden ${
-                        isPlaying ? 'animate-spin-slow' : ''
-                      }`}
-                    >
-                      <img src="/vinylk.png" alt="Vinyl" className="w-full h-full object-cover" />
-                    </div>
-                    <button
-                      className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white rounded-full p-1 text-xs"
-                      style={{ color: '#B2B2B2' }}
-                      onClick={togglePlay}
-                    >
-                      {isPlaying ? '⏸' : '▶'}
-                    </button>
-                  </div>
+         {stage === 'player' && (
+  <>
+    {/* Tombol close */}
+    <button
+      onClick={handleClosePopup}
+      className="fixed right-160 top-60 z-[9999]"
+    >
+      <img
+        src="/xk.png"
+        alt="Tutup"
+        className="w-10 h-10 hover:scale-110 transition-transform"
+      />
+    </button>
 
-                  <div className="text-center">
-                    <h3 className="text-sm font-semibold text-black" style={{ color: '#454545', paddingTop: '10px' }}>
-                      Tebak laah
-                    </h3>
-                    <p className="text-xs text-gray-600" style={{ color: '#666666' }}>
-                      Honey Gentry
-                    </p>
-                  </div>
-                </div>
+    {/* Karakter dan pemutar musik */}
+    <img
+      src="/kia.png"
+      alt="Karakter lucu"
+      className="absolute top-[212px] left-1/2 w-16 h-16 z-50 transform -translate-x-1/2 animate-slide-side"
+    />
+    <div className="fixed bottom-88 left-1/2 transform -translate-x-1/2 bg-white/24 backdrop-blur-md rounded-xl shadow-lg flex flex-col items-center gap-4 p-4 z-50 w-[300px]">
+      {/* Vinyl dan info lagu */}
+      <div className="flex flex-col items-center">
+        <div className="relative w-16 h-16 mb-2">
+          <div
+            className={`w-16 h-16 rounded-full border-2 border-black overflow-hidden ${
+              isPlaying ? 'animate-spin-slow' : ''
+            }`}
+          >
+            <img src="/vinylk.png" alt="Vinyl" className="w-full h-full object-cover" />
+          </div>
+          <button
+            className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-black text-white rounded-full p-1 text-xs"
+            style={{ color: '#B2B2B2' }}
+            onClick={togglePlay}
+          >
+            {isPlaying ? '⏸' : '▶'}
+          </button>
+        </div>
 
-                {/* Bawah: range dan waktu */}
-                <div className="flex items-center gap-2 w-full">
-                  <span className="text-xs text-gray-800 w-[40px]">{formatTime(currentTime)}</span>
-                  <input
-                    type="range"
-                    min={0}
-                    max={duration}
-                    value={currentTime}
-                    onChange={handleSeek}
-                    className="flex-grow"
-                    style={{ accentColor: '#666666' }}
-                  />
-                  <span className="text-xs text-gray-800 w-[40px] text-right">{formatTime(duration)}</span>
-                </div>
-              </div>
-            </>
-          )}
+        <div className="text-center">
+          <h3 className="text-sm font-semibold text-black" style={{ color: '#454545', paddingTop: '10px' }}>
+            Tebak laah
+          </h3>
+          <p className="text-xs text-gray-600" style={{ color: '#666666' }}>
+            Honey Gentry
+          </p>
+        </div>
+      </div>
+
+      {/* Bar waktu */}
+      <div className="flex items-center gap-2 w-full">
+        <span className="text-xs text-gray-800 w-[40px]">{formatTime(currentTime)}</span>
+        <input
+          type="range"
+          min={0}
+          max={duration}
+          value={currentTime}
+          onChange={handleSeek}
+          className="flex-grow"
+          style={{ accentColor: '#666666' }}
+        />
+        <span className="text-xs text-gray-800 w-[40px] text-right">{formatTime(duration)}</span>
+      </div>
+    </div>
+  </>
+)}
+
         </div>
       )}
 
