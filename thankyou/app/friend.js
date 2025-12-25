@@ -13,7 +13,7 @@ export default function CustomPage() {
       case 'gotik':
         return 'Halo Kia! Terima kasih sudah menjadi teman yang penuh keceriaan!';
       case 'celo':
-        return 'Halo Celo! Terima kasih sudah menjadi teman yang baik!';
+        return 'Halo Nata! Selamat ulang tahun yaah!';
       default:
         return 'Halo Teman! Selamat datang di halaman spesialmu!';
     }

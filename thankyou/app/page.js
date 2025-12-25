@@ -19,8 +19,8 @@ export default function HomePage() {
         <Link href="/gotik">
           <button style={{ margin: '10px', padding: '10px' }}>Kirim Ke Kia</button>
         </Link>
-        <Link href="/cello">
-          <button style={{ margin: '10px', padding: '10px' }}>Kirim Ke Celo</button>
+        <Link href="/nata">
+          <button style={{ margin: '10px', padding: '10px' }}>Kirim Ke Nata</button>
         </Link>
       </div>
     </div>
