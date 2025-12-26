@@ -209,7 +209,7 @@ export default function MawarPage() {
               {/* Tombol close */}
               <button
                 onClick={handleClosePopup}
-                className="fixed right-160 top-60 z-[9999]"
+                className="fixed right-120 top-21 z-[9999]"
               >
                 <img
                   src="/xw.png"
@@ -222,7 +222,7 @@ export default function MawarPage() {
               <img
                 src="/nata.png" //NANTI GANTI /nata.png
                 alt="Karakter lucu"
-                className="absolute top-[212px] left-1/2 w-16 h-16 z-50 transform -translate-x-1/2 animate-slide-side"
+                className="absolute top-[54px] left-1/2 w-16 h-16 z-50 transform -translate-x-1/2 animate-slide-side"
               />
               <div className="fixed bottom-88 left-1/2 transform -translate-x-1/2 bg-white/24 backdrop-blur-md rounded-xl shadow-lg flex flex-col items-center gap-4 p-4 z-50 w-[300px]">
                 {/* Vinyl dan info lagu */}
