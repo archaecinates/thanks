@@ -104,7 +104,7 @@ export default function MawarPage() {
     <div
       className="min-h-screen flex flex-col items-center justify-center px-4 text-center"
       style={{
-        backgroundImage: "url('/bg-nata.png')", //INI NANTI DIGANTI TEMA NYA SI NATA
+        backgroundImage: "url('/bg-kia.png')", //INI NANTI DIGANTI TEMA NYA SI NATA
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -120,9 +120,9 @@ export default function MawarPage() {
           }}
         >
           <img
-            src="/mawar.png" //INI DI GANTI SAMA MATCHA
+            src="/nata.png" //INI DI GANTI SAMA MATCHA
             alt="Nata"
-            className="absolute top-[90px] z-10"
+            className="absolute top-[70px] z-10"
             style={{
               animation: "customBounce 2s ease-in-out infinite",
             }}
@@ -170,7 +170,7 @@ export default function MawarPage() {
                 style={{ animation: "slideUpPaper 1s ease-out forwards" }}
               >
                 <img
-                  src="/wir.png" // Ganti dengan path gambar yang kamu buat di Figma
+                  src="/nat.png" // Ganti dengan path gambar yang kamu buat di Figma
                   alt="Tulisan dari Figma"
                   className="w-100 h-80 object-contain" // Sesuaikan ukuran dan perataan gambar jika perlu
                 />
@@ -220,7 +220,7 @@ export default function MawarPage() {
 
               {/* Karakter dan pemutar musik */}
               <img
-                src="/mawar.png" //NANTI GANTI /nata.png
+                src="/nata.png" //NANTI GANTI /nata.png
                 alt="Karakter lucu"
                 className="absolute top-[212px] left-1/2 w-16 h-16 z-50 transform -translate-x-1/2 animate-slide-side"
               />
@@ -259,7 +259,7 @@ export default function MawarPage() {
                       className="text-xs text-gray-600"
                       style={{ color: "#7C6654" }}
                     >
-                      The Beatles
+                      Katy Perry
                     </p>
                   </div>
                 </div>
